@@ -11,7 +11,7 @@ fn main() {
 
     let condition = true;
     // 三目运算符
-    // if表达式 要求if和else的值一致
+    // if表达式 要求if和else的值类型一致
     let number = if condition { 1 } else { 0 };
     println!("condition was true: the value of number is {}", number);
 
