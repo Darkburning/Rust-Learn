@@ -63,6 +63,8 @@ fn main() {
     println!("value_in_cents: {}", value_in_cents(Coin::Penny));
     let Alaska_coin = Coin::Quarter(UsState::Alaska);
     println!("value_in_cents: {}", value_in_cents(Alaska_coin));
+    let Alabama_coin = Coin::Quarter(UsState::Alabama);
+    println!("value_in_cents: {}", value_in_cents(Alabama_coin));
 
     let five = Some(5);
     let six = plus_one(five);

@@ -6,6 +6,16 @@ struct User {
     sign_in_count: u64,
 } // 注意：普通struct此处应为expression，不能有分号
 
+fn build_user(email: String, username: String) -> User {
+    User {
+        // syntax sugar: field init shorthand
+        email,    // 等价于 email: email,
+        username, // 等价于 username: username,
+        active: true,
+        sign_in_count: 1,
+    }
+}
+
 fn main() {
     // instantiate struct
     let mut user1 = User {
@@ -50,14 +60,4 @@ fn main() {
     // 类单元结构体常常在你想要在某个类型上实现 trait 但不需要在类型中存储数据的时候发挥作用
     struct AlwaysEqual;
     let subject = AlwaysEqual;
-}
-
-fn build_user(email: String, username: String) -> User {
-    User {
-        // syntax sugar: field init shorthand
-        email,    // 等价于 email: email,
-        username, // 等价于 username: username,
-        active: true,
-        sign_in_count: 1,
-    }
 }

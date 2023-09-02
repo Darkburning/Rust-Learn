@@ -39,6 +39,9 @@ fn calculate_length_v2(s: &mut String) -> usize {
     s.push_str("ALOHA!");
     s.len()
 }
+// 在函数中创建了一个变量将其引用返回
+// 由于变量离开函数作用域后会`drop`因此该引用时无效的（也即悬垂引用）
+// 编译器会报错
 // fn dangle() -> &String {
 //     let s = String::from("hello");
 //     &s

@@ -47,7 +47,7 @@ fn main() {
     }
 }
 
-//仅在 &String 的上下文中返回值才是一个有意义的数字
+//仅在 &String 的上下文中，返回值才是一个有意义的数字
 fn first_word_v1(s: &String) -> usize {
     let bytes = s.as_bytes();
 
@@ -85,6 +85,6 @@ fn first_word_v3(s: &str) -> &str {
 fn syntactic_sugar(s: &String) {
     let hello = &s[..5];
     let world = &s[6..];
-    let sentence = &s[..];
-    println!("{}, {}, {}", hello, world, sentence);
+    let all = &s[..];
+    println!("{}, {}, {}", hello, world, all);
 }

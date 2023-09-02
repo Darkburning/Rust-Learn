@@ -13,7 +13,10 @@ fn main() {
     // 三目运算符
     // if表达式 要求if和else的值类型一致
     let number = if condition { 1 } else { 0 };
-    println!("condition was true: the value of number is {}", number);
+    println!(
+        "condition was {}: the value of number is {}",
+        condition, number
+    );
 
     // let mut count = 10;
     // while count != 0 {
@@ -26,7 +29,7 @@ fn main() {
         println!("countdown: {}", i);
     }
 
-    println!("Go!!!");
+    println!("Launch!!!");
 
     let months = [
         "January",
@@ -43,8 +46,9 @@ fn main() {
         "December",
     ];
 
+    println!("The month list:");
     for element in months.iter() {
-        println!("the month is {}", element);
+        println!("{}", element);
     }
 }
 

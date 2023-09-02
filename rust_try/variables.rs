@@ -63,7 +63,7 @@ fn main() {
         println!("the element is {}", element);
     }
 
-    let b = [3; 5];
+    let b = [3; 5]; // [value; times]
     for element in b.iter() {
         println!("the element is {}", element);
     }

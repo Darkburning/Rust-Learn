@@ -59,6 +59,10 @@ fn main() {
     let message = Message::Quit;
     message.call();
 
+    let quit = Message::Move { x: 123, y: 123 };
+    let write = Message::Write(String::from("hello!"));
+    let ChangeColor = Message::ChangeColor(1, 2, 3);
+
     // Option enum
     let some_number = Some(5);
     let some_string = Some("a string");
@@ -66,10 +70,10 @@ fn main() {
     let absent_number: Option<i32> = None;
 
     // compile error: cannot add `Option<i8>` to `i8`
-    let x: i8 = 5;
-    let y: Option<i8> = Some(5);
+    // let x: i8 = 5;
+    // let y: Option<i8> = Some(5);
 
-    let sum = x + y;
+    // let sum = x + y;
 }
 // enum as fn's parameters
 fn route(ip_kind: IpAddrKind) {
