@@ -1,4 +1,5 @@
 use dotenv::dotenv;
+use std::collections::HashMap;
 use std::error::Error;
 use std::fs;
 
@@ -33,31 +34,31 @@ pub fn run(config: &Config) -> Result<(), Box<dyn Error>> {
         search_case_insensitive(&config.query, &contents)
     };
 
-    for line in results {
-        println!("{}", line)
+    for (linenum, line) in results {
+        println!("line: {} contents: {}", linenum, line)
     }
 
     Ok(())
 }
 
-pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-    let mut results = Vec::new();
+pub fn search<'a>(query: &str, contents: &'a str) -> HashMap<usize, &'a str> {
+    let mut results = HashMap::new();
 
-    for line in contents.lines() {
+    for (line_num, line) in contents.lines().enumerate() {
         if line.contains(query) {
-            results.push(line);
+            results.insert(line_num + 1, line);
         }
     }
 
     results
 }
-pub fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
+pub fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> HashMap<usize, &'a str> {
     let query = query.to_lowercase();
-    let mut results = Vec::new();
+    let mut results = HashMap::new();
 
-    for line in contents.lines() {
+    for (line_num, line) in contents.lines().enumerate() {
         if line.to_lowercase().contains(&query) {
-            results.push(line);
+            results.insert(line_num + 1, line);
         }
     }
 
@@ -67,6 +68,7 @@ pub fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a st
 #[cfg(test)]
 mod tests {
     use super::*;
+    use maplit::hashmap;
 
     #[test]
     fn test_config_new() {
@@ -122,7 +124,12 @@ Rust:
 safe, fast, productive.
 Pick three.";
 
-        assert_eq!(vec!["safe, fast, productive."], search(query, contents));
+        // let mut expected: HashMap<usize, &str> = HashMap::new();
+        // expected.insert(2, "safe, fast, productive.");
+        let expected = hashmap! {
+            2 => "safe, fast, productive."
+        };
+        assert_eq!(expected, search(query, contents));
     }
 
     #[test]
@@ -133,10 +140,10 @@ Rust:
 safe, fast, productive.
 Pick three.
 Trust me.";
-
-        assert_eq!(
-            vec!["Rust:", "Trust me."],
-            search_case_insensitive(query, contents)
-        );
+        let expected = hashmap! {
+            1 => "Rust:",
+            4 => "Trust me."
+        };
+        assert_eq!(expected, search_case_insensitive(query, contents));
     }
 }
