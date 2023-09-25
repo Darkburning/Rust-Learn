@@ -23,7 +23,7 @@ pub fn render(app: &mut App, f: &mut Frame) {
                 .borders(Borders::ALL)
                 .border_type(BorderType::Rounded),
         )
-        .style(Style::default().fg(Color::Yellow))
+        .style(Style::default().fg(Color::Green))
         .alignment(Alignment::Center),
         f.size(),
     )
