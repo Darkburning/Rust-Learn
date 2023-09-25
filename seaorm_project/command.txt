@@ -1,0 +1,2 @@
+1. RUN MIGRATE: sea-orm-cli migrate refresh -u mysql://root:123456@localhost:3306/rust_learn_db
+2. Generate Entity: sea-orm-cli generate entity -u mysql://root:123456@localhost:3306/rust_learn_db -o src/entities
