@@ -2,3 +2,5 @@
 *.pdb
 */target
 */*/target
+*.zip
+*.jpg

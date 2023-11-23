@@ -1,44 +1,14 @@
+const VERSION: &str = env!("CARGO_PKG_VERSION");
+
 fn main() {
-    println!("Hello, world!");
-}
-
-// quiz1.rs
-// This is a quiz for the following sections:
-// - Variables
-// - Functions
-// - If
-
-// Mary is buying apples. The price of an apple is calculated as follows:
-// - An apple costs 2 rustbucks.
-// - If Mary buys more than 40 apples, each apple only costs 1 rustbuck!
-// Write a function that calculates the price of an order of apples given
-// the quantity bought. No hints this time!
-
-// I AM NOT DONE
-
-// Put your function here!
-fn calculate_price_of_apples(apple_num: i32) -> i32 {
-    if apple_num > 40 {
-        return apple_num;
-    }
-    apple_num * 2
-
-    // match apple_num {
-    //     n if n > 40 => apple_num,
-    //     _ => apple_num * 2,
-    // }
-}
-
-// Don't modify this function!
-#[test]
-fn verify_test() {
-    let price1 = calculate_price_of_apples(35);
-    let price2 = calculate_price_of_apples(40);
-    let price3 = calculate_price_of_apples(41);
-    let price4 = calculate_price_of_apples(65);
-
-    assert_eq!(70, price1);
-    assert_eq!(80, price2);
-    assert_eq!(41, price3);
-    assert_eq!(65, price4);
+    // 居中显示信息
+    let mut welcome_msg = format!(":j-editor 🎈🎉✨🎊🎇🎈 -- version {} \r", VERSION);
+    let width = 50 as usize;
+    let msg_len = welcome_msg.len();
+    let padding_len = width.saturating_sub(msg_len) / 2;
+    let padding = " ".repeat(padding_len.saturating_sub(1));
+    welcome_msg = padding + welcome_msg.as_str();
+    // truncate保证消息不会超过窗口宽度
+    welcome_msg.truncate(width);
+    println!("{}\r", welcome_msg);
 }
